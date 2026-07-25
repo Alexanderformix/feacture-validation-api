@@ -4,6 +4,10 @@ from django.contrib.auth.models import User
 
 class Notification(models.Model):
 
+    class Meta:
+        verbose_name = "Notificación"
+        verbose_name_plural = "Notificaciones"
+
     user = models.ForeignKey(
         User,
         on_delete=models.CASCADE

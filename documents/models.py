@@ -6,35 +6,30 @@ class DocumentType(models.Model):
 
     name = models.CharField(max_length=100)
 
+    class Meta:
+        verbose_name = "Tipo de Documento"
+        verbose_name_plural = "Tipos de Documento"
+
     def __str__(self):
         return self.name
 
 
 class Document(models.Model):
 
-    STATUS_CHOICES = [
-        ('PENDING', 'Pending'),
-        ('APPROVED', 'Approved'),
-        ('REJECTED', 'Rejected')
+    ESTADOS = [
+        ("PENDIENTE", "Pendiente"),
+        ("APROBADO", "Aprobado"),
+        ("RECHAZADO", "Rechazado"),
     ]
 
-    user = models.ForeignKey(
-        User,
-        on_delete=models.CASCADE
-    )
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
-    document_type = models.ForeignKey(
-        DocumentType,
-        on_delete=models.CASCADE
-    )
+    document_type = models.ForeignKey(DocumentType, on_delete=models.CASCADE)
 
-    file = models.FileField(
-        upload_to='documents/'
-    )
+    file = models.FileField(upload_to="documents/")
 
-    status = models.CharField(
-        max_length=20,
-        choices=STATUS_CHOICES,
-        default='PENDING'
-    )
-# Create your models here.
+    status = models.CharField(max_length=20, choices=ESTADOS, default="PENDIENTE")
+
+    class Meta:
+        verbose_name = "Documento"
+        verbose_name_plural = "Documentos"

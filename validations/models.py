@@ -8,6 +8,9 @@ from documents.models import (
 
 
 class ValidationRule(models.Model):
+    class Meta:
+        verbose_name = "Regla de Validación"
+        verbose_name_plural = "Reglas de Validación"
 
     document_type = models.ForeignKey(
         DocumentType,
@@ -21,6 +24,9 @@ class ValidationRule(models.Model):
 
 
 class ValidationTask(models.Model):
+    class Meta:
+        verbose_name = "Tarea de Validación"
+        verbose_name_plural = "Tareas de Validación"
 
     document = models.ForeignKey(
         Document,
