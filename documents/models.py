@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+# Representa los tipos de documentos permitidos.
+
 
 class DocumentType(models.Model):
 
@@ -12,6 +14,9 @@ class DocumentType(models.Model):
 
     def __str__(self):
         return self.name
+
+
+# Documento cargado por un usuario.
 
 
 class Document(models.Model):

@@ -1,3 +1,11 @@
 from django.test import TestCase
+from notifications.models import Notification
 
-# Create your tests here.
+
+class NotificationTest(TestCase):
+
+    def test_notification_default(self):
+
+        notification = Notification(message="Hola")
+
+        self.assertFalse(notification.read)

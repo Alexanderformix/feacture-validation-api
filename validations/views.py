@@ -51,6 +51,11 @@ class ValidationTaskViewSet(ModelViewSet):
 
         return Response({"message": "Documento aprobado."})
 
+    """
+    Permite al usuario responsable aprobar un documento.
+    Solo el usuario asignado puede ejecutar esta acción.
+    """
+
     @action(detail=True, methods=["post"])
     def reject(self, request, pk=None):
 
@@ -73,3 +78,8 @@ class ValidationTaskViewSet(ModelViewSet):
         )
 
         return Response({"message": "Documento rechazado."})
+
+    """
+    Permite al usuario responsable aprobar un documento.
+    Solo el usuario asignado puede ejecutar esta acción.
+    """

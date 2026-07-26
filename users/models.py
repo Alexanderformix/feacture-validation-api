@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+# Perfil extendido para manejar roles dentro del sistema.
+
 
 class UserProfile(models.Model):
 
@@ -21,6 +23,3 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return f"{self.user.username} - {self.role}"
-
-
-# Create your models here.

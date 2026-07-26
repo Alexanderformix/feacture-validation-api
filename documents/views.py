@@ -24,6 +24,14 @@ class DocumentViewSet(ModelViewSet):
             user=rule.validator, message=f"Tienes un documento pendiente: {document.id}"
         )
 
+    permission_classes = [IsAuthenticated]
+
+    """
+    Guarda el documento en AWS, busca la regla de validación
+    correspondiente, crea la tarea de validación y notifica
+    al responsable asignado.
+    """
+
 
 class DocumentTypeViewSet(ModelViewSet):
 
