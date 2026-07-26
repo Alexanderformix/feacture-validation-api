@@ -5,12 +5,24 @@ from .models import Document, DocumentType
 
 from .serializers import DocumentSerializer, DocumentTypeSerializer
 
+from validations.models import ValidationRule, ValidationTask
+from notifications.models import Notification
+
 
 class DocumentViewSet(ModelViewSet):
 
     queryset = Document.objects.all()
     serializer_class = DocumentSerializer
-    permission_classes = [IsAuthenticated]
+
+    def perform_create(self, serializer):
+        document = serializer.save()
+        rule = ValidationRule.objects.get(document_type=document.document_type)
+
+        ValidationTask.objects.create(document=document, assigned_to=rule.validator)
+
+        Notification.objects.create(
+            user=rule.validator, message=f"Tienes un documento pendiente: {document.id}"
+        )
 
 
 class DocumentTypeViewSet(ModelViewSet):
